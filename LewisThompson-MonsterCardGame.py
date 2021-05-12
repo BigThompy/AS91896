@@ -21,7 +21,7 @@ FullCatalogue = {
                 'Vortexwing': {"Name": 'Vortexwing', "Strength": 19, "Speed":13, "Stealth": 19, "Cunning": 2},
                 'Rotthing': {"Name": 'Rotthing', "Strength": 16, "Speed":7, "Stealth": 4, "Cunning": 12},
                 'Froststep': {"Name": 'Froststep', "Strength": 14, "Speed":14, "Stealth": 17, "Cunning": 4},
-                'Wispghoul': {"Name": 'Wispghoul', "Strength": 17, "Speed":19, "Stealth": 3, "Cunning": 2},
+                'Wispghoul': {"Name": 'Wispghoul', "Strength": 17, "Speed":19, "Stealth": 3, "Cunning": 2}
 }
 
 
@@ -39,6 +39,12 @@ def addMonster():
 
 # Deleting a monster from the catalogue
 def deleteMonster():
+    choiceList = []
+    for i in FullCatalogue:
+        choiceList.append(i)
+    choices = easygui.multchoicebox("Select which monster to delete", "Deleting monsters", choiceList)
+    for i in choices:
+        FullCatalogue.pop(i)
 
 
 
