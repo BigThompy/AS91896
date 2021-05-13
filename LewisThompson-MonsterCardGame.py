@@ -52,22 +52,38 @@ def editMonster():
     for i in FullCatalogue:
         choiceList.append(i)
     monsterEdit = easygui.choicebox("Choose which monster to edit","Editing Monsters", choiceList)
-    statsEdit = []
-    statsEdit = int(easygui.multenterbox("Enter the values(Leave blank to not change)", "Editing values", fieldNames))
-    FullCatalogue[monsterEdit["Name"]] = statsEdit[0]
-    FullCatalogue[monsterEdit["Strength"]] = statsEdit[1]
-    FullCatalogue[monsterEdit["Speed"]] = statsEdit[2]
-    FullCatalogue[monsterEdit["Stealth"]] = statsEdit[3]
-    FullCatalogue[monsterEdit["Cunning"]] = statsEdit[4]
-
-
-
-
+    for i in range(0,2):
+        nameEdit = easygui.integerbox("Enter the name(Enter 0 to not change)", "Editing values")
+        if nameEdit == 0:
+            strengthEdit = easygui.integerbox("Enter the strength(Enter 0 to not change)", "Editing values")
+            if strengthEdit == 0:
+                speedEdit = easygui.integerbox("Enter the speed(Enter 0 to not change)", "Editing values")
+                if speedEdit == 0:
+                    stealthEdit = easygui.integerbox("Enter the stealth(Enter 0 to not change)", "Editing values")
+                    if stealthEdit == 0:
+                        cunningEdit = easygui.integerbox("Enter the cunning(Enter 0 to not change)", "Editing values")
+                        if cunningEdit == 0:
+                            break
+                        else:
+                            monsterEdit["Cunning"] = cunningEdit
+                    else:
+                        monsterEdit["Stealth"] = stealthEdit
+                else:
+                    monsterEdit["Speed"] = speedEdit
+            else:
+                monsterEdit["Strength"] = strengthEdit
+        else:
+            monsterEdit["Name"] = nameEdit
 
 
 # Outputing monster to shell
 def shellOutput():
-    outputMonster = easygui.multchoicebox()
+    for i in FullCatalogue:
+        shells =[]
+        shells.append(i)
+
+    outputMonster = easygui.multchoicebox("Select which monster to print to shell", "Printing monsters", shells)
+    print(outputMonster)
 
 
 
