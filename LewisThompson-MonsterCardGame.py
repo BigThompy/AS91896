@@ -47,21 +47,40 @@ def deleteMonster():
         FullCatalogue.pop(i)
 
 
+def editMonster():
+    choiceList = []
+    for i in FullCatalogue:
+        choiceList.append(i)
+    monsterEdit = easygui.choicebox("Choose which monster to edit","Editing Monsters", choiceList)
+    statsEdit = []
+    statsEdit = int(easygui.multenterbox("Enter the values(Leave blank to not change)", "Editing values", fieldNames))
+    FullCatalogue[monsterEdit["Name"]] = statsEdit[0]
+    FullCatalogue[monsterEdit["Strength"]] = statsEdit[1]
+    FullCatalogue[monsterEdit["Speed"]] = statsEdit[2]
+    FullCatalogue[monsterEdit["Stealth"]] = statsEdit[3]
+    FullCatalogue[monsterEdit["Cunning"]] = statsEdit[4]
+
+
+
+
+
 
 # Outputing monster to shell
 def shellOutput():
-    easygui.multchoicebox()
+    outputMonster = easygui.multchoicebox()
 
 
 
 # Main menu function
-mainChoice = easygui.buttonbox("Welcome to the Monster Card Catalogue!\n What would you like to do?", choices=("Add a new monster", "Delete a monster", "Outputting a monster stats to shell", "Quit"))
+mainChoice = easygui.buttonbox("Welcome to the Monster Card Catalogue!\n What would you like to do?", choices=("Add a new monster", "Delete a monster", "Outputting a monster stats to shell", "Edit a monster", "Quit"))
 if mainChoice == "Add a new monster":
     addMonster()
 elif mainChoice == "Delete a monster":
     deleteMonster()
 elif mainChoice == "Outputting a monster stats to shell":
     shellOutput()
+elif mainChoice == "Edit a monster":
+    editMonster()
 elif mainChoice == "Quit":
     exit
 
